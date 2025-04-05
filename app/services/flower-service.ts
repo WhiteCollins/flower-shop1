@@ -4,13 +4,12 @@ import { normalizeFlower } from "../lib/utils"
 
 const STORAGE_KEY = "flowers"
 
+
 /**
  * Servicio para manejar las operaciones CRUD de flores en localStorage
  */
 export const FlowerService = {
-  /**
-   * Obtiene todas las flores del localStorage
-   */
+
   getAll(): Flower[] {
     try {
       const storedFlowers = localStorage.getItem(STORAGE_KEY)
