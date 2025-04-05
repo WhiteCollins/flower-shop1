@@ -12,6 +12,8 @@ interface CategoryTabsProps {
   children: React.ReactNode
 }
 
+
+
 export function CategoryTabs({ categories, activeCategory, onCategoryChange, children }: CategoryTabsProps) {
   return (
     <Tabs value={activeCategory} onValueChange={onCategoryChange}>
