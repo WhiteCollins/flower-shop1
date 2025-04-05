@@ -152,4 +152,4 @@ Características planificadas para futuras versiones:
 Collinsjcwhite@gmail.com
 ```
 
-Este README proporciona una documentación completa del proyecto Mi Floristería, incluyendo su estructura, características, guías de instalación y uso, y otra información relevante para desarrolladores y usuarios.
+
