@@ -1,6 +1,6 @@
 "use client"
 
-import { PlusCircle } from "lucide-react"
+import { Search } from "lucide-react"
 import Link from "next/link"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -12,18 +12,20 @@ interface SearchBarProps {
 
 export function SearchBar({ searchTerm, onSearchChange }: SearchBarProps) {
   return (
-    <div className="flex gap-2 w-full md:w-auto">
-      <Input
-        placeholder="Buscar flores..."
-        className="max-w-[300px]"
-        value={searchTerm}
-        onChange={(e) => onSearchChange(e.target.value)}
-      />
+    <div className="flex items-center space-x-2 mb-6">
+      <div className="relative flex-1">
+        <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+        <Input
+          type="search"
+          placeholder="Buscar flores..."
+          className="pl-8"
+          value={searchTerm}
+          onChange={(e) => onSearchChange(e.target.value)}
+          data-testid="search-input"
+        />
+      </div>
       <Link href="/add">
-        <Button>
-          <PlusCircle className="mr-2 h-4 w-4" />
-          Añadir Flor
-        </Button>
+        <Button data-testid="add-flower-button">Añadir Flor</Button>
       </Link>
     </div>
   )

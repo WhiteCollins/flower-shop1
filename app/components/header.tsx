@@ -1,25 +1,21 @@
 import Link from "next/link"
-import { Flower2 } from "lucide-react"
+import { BarChart } from "lucide-react"
+import { ModeToggle } from "@/components/mode-toggle"
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-10 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 items-center">
-        <Link href="/" className="flex items-center gap-2 font-semibold">
-          <Flower2 className="h-6 w-6 text-rose-500" />
-          <span>Mi Floristería</span>
-        </Link>
-        <nav className="flex items-center space-x-4 lg:space-x-6 mx-6">
-          <Link href="/" className="text-sm font-medium transition-colors hover:text-primary">
-            Inventario
+    <header className="border-b">
+      <div className="container mx-auto p-4 flex items-center justify-between">
+        <Link href="/" className="font-bold text-xl">Flower Shop</Link>
+        <div className="flex items-center space-x-4">
+          <Link href="/stats" data-testid="stats-link">
+            <div className="flex items-center">
+              <BarChart className="h-5 w-5 mr-1" />
+              <span>Estadísticas</span>
+            </div>
           </Link>
-          <Link
-            href="/stats"
-            className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-          >
-            Estadísticas
-          </Link>
-        </nav>
+          <ModeToggle />
+        </div>
       </div>
     </header>
   )

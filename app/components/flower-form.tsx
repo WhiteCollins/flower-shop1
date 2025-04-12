@@ -30,7 +30,7 @@ export function FlowerForm({ initialData, flowerId, title, description }: Flower
   return (
     <Card>
       <CardHeader>
-        <CardTitle>{title}</CardTitle>
+        <CardTitle data-testid="form-title">{title}</CardTitle>
         <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardContent>
@@ -43,7 +43,14 @@ export function FlowerForm({ initialData, flowerId, title, description }: Flower
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid gap-2">
             <Label htmlFor="name">Nombre</Label>
-            <Input id="name" name="name" value={formData.name} onChange={handleChange} required />
+            <Input 
+              id="name" 
+              name="name" 
+              value={formData.name} 
+              onChange={handleChange} 
+              required 
+              data-testid="name-input"
+            />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -58,6 +65,7 @@ export function FlowerForm({ initialData, flowerId, title, description }: Flower
                 value={formData.price}
                 onChange={handleChange}
                 required
+                data-testid="price-input"
               />
             </div>
             <div className="grid gap-2">
@@ -70,6 +78,7 @@ export function FlowerForm({ initialData, flowerId, title, description }: Flower
                 value={formData.quantity}
                 onChange={handleChange}
                 required
+                data-testid="quantity-input"
               />
             </div>
           </div>
@@ -77,12 +86,16 @@ export function FlowerForm({ initialData, flowerId, title, description }: Flower
           <div className="grid gap-2">
             <Label htmlFor="category">Categoría</Label>
             <Select value={formData.category.toString()} onValueChange={handleSelectChange} required>
-              <SelectTrigger>
+              <SelectTrigger id="category" data-testid="category-select">
                 <SelectValue placeholder="Selecciona una categoría" />
               </SelectTrigger>
               <SelectContent>
                 {FLOWER_CATEGORIES.map((category) => (
-                  <SelectItem key={category.value} value={category.value}>
+                  <SelectItem 
+                    key={category.value} 
+                    value={category.value}
+                    data-value={category.value}
+                  >
                     {category.label}
                   </SelectItem>
                 ))}
@@ -97,44 +110,38 @@ export function FlowerForm({ initialData, flowerId, title, description }: Flower
               name="description"
               value={formData.description}
               onChange={handleChange}
-              rows={3}
-              required
+              rows={4}
+              data-testid="description-textarea"
             />
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="image">Imagen</Label>
+            <Label htmlFor="image">Imagen URL</Label>
             <Input
               id="image"
               name="image"
-              type="file"
-              accept="image/*"
-              onChange={(e) => {
-                if (e.target.files && e.target.files[0]) {
-                  // Crear URL del objeto para la vista previa
-                  const fileUrl = URL.createObjectURL(e.target.files[0]);
-                  handleImageChange(fileUrl);
-                }
-              }}
+              value={formData.image}
+              onChange={handleChange}
+              placeholder="https://ejemplo.com/imagen.jpg"
+              data-testid="image-input"
             />
-            {formData.image && (
-              <div className="mt-2">
-                <p className="text-sm text-muted-foreground mb-1">Vista previa:</p>
-                <img 
-                  src={formData.image} 
-                  alt="Vista previa" 
-                  className="w-32 h-32 object-cover rounded-md" 
-                />
-              </div>
-            )}
           </div>
 
-          <div className="flex justify-end gap-2">
-            <Button type="button" variant="outline" onClick={handleCancel} disabled={isSubmitting}>
+          <div className="flex justify-end space-x-2">
+            <Button 
+              type="button" 
+              variant="outline" 
+              onClick={handleCancel}
+              data-testid="cancel-button"
+            >
               Cancelar
             </Button>
-            <Button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Guardando..." : flowerId ? "Guardar Cambios" : "Guardar"}
+            <Button 
+              type="submit" 
+              disabled={isSubmitting}
+              data-testid="submit-button"
+            >
+              {isSubmitting ? 'Guardando...' : 'Guardar'}
             </Button>
           </div>
         </form>
